@@ -1,5 +1,5 @@
 ############################################################
-# Dockerfile to build FASTQC container images
+# Dockerfile to build Picard container image
 # Based on Ubuntu
 ############################################################
 
@@ -7,7 +7,7 @@
 FROM ubuntu:14.04
 
 # File Author / Maintainer
-MAINTAINER Laurent Jourdren <jourdren@biologie.ens.fr>
+MAINTAINER Kathrin Klee
 
 # Update the repository sources list
 RUN apt-get update
