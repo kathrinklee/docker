@@ -8,7 +8,7 @@
 FROM ubuntu:14.04 
 
 # File Author / Maintainer 
-MAINTAINER Kathrin Klee <klee@uni-bonn.de> 
+MAINTAINER Kathrin Klee <klee@uni-bonn.de>
 
 # Update the repository sources list 
 RUN apt-get update
@@ -35,3 +35,7 @@ WORKDIR /usr/local/STAR
 RUN pwd
 RUN make STAR
 ENV PATH /usr/local/STAR/source:$PATH
+
+WORKDIR /usr/local/Drop-seq_tools
+RUN wget "http://mccarrolllab.com/download/922/Drop-seq_tools-1.12.zip" && \
+ unzip Drop-seq_tools-1.12.zip
