@@ -36,6 +36,7 @@ RUN pwd
 RUN make STAR
 ENV PATH /usr/local/STAR/source:$PATH
 
+# Install Drop-seq-tools
 WORKDIR /usr/local/Drop-seq_tools
 RUN wget "http://mccarrolllab.com/download/922/Drop-seq_tools-1.12.zip" && \
  unzip Drop-seq_tools-1.12.zip
