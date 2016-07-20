@@ -11,7 +11,7 @@ FROM ubuntu:14.04
 MAINTAINER Kathrin Klee <klee@uni-bonn.de>
 
 # Update the repository sources list 
-RUN apt-get update
+RUN apt-get update && apt-get install -y wget
 
 # Install compiler and perl stuff 
 RUN apt-get install --yes \
