@@ -11,7 +11,7 @@ FROM ubuntu:14.04
 MAINTAINER Kathrin Klee <klee@uni-bonn.de>
 
 # Update the repository sources list 
-RUN apt-get update && apt-get install -y wget && apt-get install -y unzip
+RUN apt-get update && apt-get install -y openjdk-7-jre-headless && apt-get install -y wget && apt-get install -y unzip
 
 # Install compiler and perl stuff 
 RUN apt-get install --yes \
