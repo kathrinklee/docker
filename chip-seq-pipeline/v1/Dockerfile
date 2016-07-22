@@ -11,7 +11,7 @@ FROM ubuntu:12.04
 MAINTAINER Kathrin Klee
 
 # Update the repository sources list
-RUN apt-get update && apt-get -y install samtools=0.1.19-1
+RUN apt-get update && apt-get -y install samtools=0.1.19-1 && apt-get install -y wget
 
 # Install compiler and perl stuff
 RUN apt-get install --yes build-essential gcc-multilib apt-utils zlib1g-dev git
