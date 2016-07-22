@@ -4,19 +4,29 @@
 # Based on Ubuntu 
 ############################################################ 
 
-# Set the base image to Ubuntu
-FROM ubuntu:12.04
+# Set the base image to Ubuntu 
+FROM ubuntu:14.04 
 
-# File Author / Maintainer
-MAINTAINER Kathrin Klee
+# File Author / Maintainer 
+MAINTAINER Kathrin Klee <klee@uni-bonn.de>
 
-# Update the repository sources list
-RUN apt-get update && apt-get -y install samtools=0.1.19-1 && apt-get install -y wget
+# Update the repository sources list 
+RUN apt-get update && apt-get -y install samtools=0.1.19-1
 
 # Install compiler and perl stuff
-RUN apt-get install --yes build-essential gcc-multilib apt-utils zlib1g-dev git
+RUN apt-get install --yes build-essential \
+  gcc-multilib \
+  apt-utils \
+  zlib1g-dev \
+  curl \
+  python \
+  python2.7-dev \
+  python-pip \
+  python-numpy \
+  python-matplotlib
+  git
 
-# Install STAR
+# Install Bowtie
 WORKDIR /tmp
 RUN git clone https://github.com/BenLangmead/bowtie.git
 WORKDIR /tmp/bowtie
