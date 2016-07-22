@@ -23,7 +23,7 @@ RUN apt-get install --yes build-essential \
   python2.7-dev \
   python-pip \
   python-numpy \
-  python-matplotlib
+  python-matplotlib \
   git
 
 # Install Bowtie
