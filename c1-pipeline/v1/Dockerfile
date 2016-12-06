@@ -1,6 +1,6 @@
 ############################################################ 
 # Dockerfile to build container images for C1 pipeline
-# including STAR aligner and FastQC
+# including STAR aligner, Bowtie, FastQC and RSEM
 # Based on Ubuntu 
 ############################################################ 
 
@@ -20,7 +20,11 @@ RUN apt-get install --yes \
  apt-utils \
  zlib1g-dev \
  vim-common \
- perl
+ perl \
+ perl-base \
+ r-base \
+ r-base-core \
+ r-base-dev
  
 # Install git 
 RUN apt-get install -y git
@@ -37,6 +41,9 @@ RUN pwd
 RUN make STAR
 ENV PATH /usr/local/STAR/source:$PATH
 
+#Install Bowtie
+RUN apt-get install --yes bowtie
+
 # Download FastQC
 ADD http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip /tmp/
 
@@ -46,3 +53,18 @@ RUN cd /usr/local && \
   chmod 755 /usr/local/FastQC/fastqc && \
   ln -s /usr/local/FastQC/fastqc /usr/local/bin/fastqc && \
   rm -rf /tmp/fastqc_*.zip
+  
+# Install RSEM 
+WORKDIR /usr/local/ 
+RUN pwd 
+RUN git clone https://github.com/deweylab/RSEM.git 
+WORKDIR /usr/local/RSEM 
+RUN pwd 
+RUN git checkout v1.2.28 
+RUN make 
+RUN make ebseq 
+ENV PATH /usr/local/RSEM:$PATH
+
+# Cleanup 
+RUN apt-get clean 
+RUN apt-get remove --yes --purge build-essential gcc-multilib apt-utils zlib1g-dev vim-common git 
