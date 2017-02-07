@@ -26,17 +26,6 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     rm -f version.txt ss-latest.deb && \
     R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')" && \
     cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/
-    
-#RUN R -e "install.packages(c('shiny','shinyjs','shinyBS','rmarkdown','RColorBrewer','stringr','formula.tools','yarrr','data.table','fdrtool','VennDiagram','colorspace','gplots','webshot'), dependencies = TRUE, repos='https://cran.rstudio.com/')"
-#RUN R -e "library(c('shiny','shinyjs','shinyBS','rmarkdown','RColorBrewer','stringr','formula.tools','yarrr','data.table','fdrtool','VennDiagram','colorspace','gplots','webshot'))"
-#RUN R -e "source('https://bioconductor.org/biocLite.R')"
-#RUN R -e "biocLite(c('DESeq2','clusterProfiler','org.Mm.eg.db','org.Dm.eg.db','sva','limma','geneplotter','biomaRt'))"
-#RUN R -e "library(c('DESeq2','clusterProfiler','org.Mm.eg.db','org.Dm.eg.db','sva','limma','geneplotter','biomaRt'))"
-#RUN R -e "devtools::install_github(c('ropensci/plotly','rstudio/crosstalk'), force = TRUE)"
-#RUN R -e "library(c('plotly','crosstalk'))"
-    
-#RUN cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/ && \
-#    chown -R shiny:shiny /srv/shiny-server/
 
 EXPOSE 3838
 
