@@ -12,6 +12,7 @@ MAINTAINER Kathrin Klee <klee@uni-bonn.de>
 
 # Update the repository sources list
 RUN apt-get update && apt-get install --yes build-essential \
+	wget \
 	cmake \
 	python \
 	python-pip \
