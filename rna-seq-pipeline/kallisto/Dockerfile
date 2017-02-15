@@ -10,6 +10,8 @@ FROM ubuntu:14.04
 # File Author / Maintainer 
 MAINTAINER Kathrin Klee <klee@uni-bonn.de>
 
+RUN echo 'deb http://cran.rstudio.com/bin/linux/ubuntu wily/' >> /etc/apt/sourdes.list
+
 # Update the repository sources list
 RUN apt-get update && apt-get install --yes build-essential \
 	wget \
