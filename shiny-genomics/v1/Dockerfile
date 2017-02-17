@@ -25,6 +25,7 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     gdebi -n ss-latest.deb && \
     rm -f version.txt ss-latest.deb && \
     R -e "install.packages(c('shiny','rmarkdown','shinyjs','shinyBS','RColorBrewer','stringr','formula.tools','yarrr','data.table','fdrtool','VennDiagram','colorspace','gplots','webshot'), dependencies = TRUE, repos='https://cran.rstudio.com/')" && \
+    R -e "library(c('shiny','rmarkdown','shinyjs','shinyBS','RColorBrewer','stringr','formula.tools','yarrr','data.table','fdrtool','VennDiagram','colorspace','gplots','webshot'))" && \
     cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/
 
 EXPOSE 3838
