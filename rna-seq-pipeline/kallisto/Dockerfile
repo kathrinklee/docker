@@ -32,9 +32,10 @@ RUN apt-get update  && apt-get install -y \
 	pigz
 	
 # install sra-toolkit
+WORKDIR /docker
 RUN wget "http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.4.4/sratoolkit.2.4.4-ubuntu64.tar.gz" && \
-	tar zxfv sratoolkit.2.4.4-ubuntu64.tar.gz && \
-	cp -r sratoolkit.2.4.4-ubuntu64/bin/* /usr/bin
+	tar zxfv sratoolkit.2.4.4-ubuntu64.tar.gz
+	#cp -r sratoolkit.2.4.4-ubuntu64/bin/* /usr/bin
 
 # install kallisto from source
 WORKDIR /docker
