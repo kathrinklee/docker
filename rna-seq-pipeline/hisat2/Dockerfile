@@ -1,6 +1,6 @@
 ############################################################
 # Dockerfile to build container images for RNA-seq pipeline
-# including hisat2, sratools and stringtie
+# including hisat2, sratools, samtools and stringtie
 # Based on Ubuntu
 ############################################################
 
@@ -10,7 +10,7 @@ FROM ubuntu:16.04
 MAINTAINER Kathrin Klee <klee@uni-bonn.de>
 
 # install dependencies first
-RUN apt-get update  && apt-get install -y samtools \
+RUN apt-get update  && apt-get install -y \
     build-essential \
     gcc-multilib \
     zlib1g-dev \
@@ -49,6 +49,14 @@ RUN wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.0.5-Linux_
     unzip hisat2-2.0.5-Linux_x86_64.zip
 RUN cp -p hisat2-2.0.5/hisat2 hisat2-2.0.5/hisat2-* /usr/bin
 
+# Install samtools
+RUN wget https://github.com/samtools/samtools/releases/download/1.4/samtools-1.4.tar.bz2 && \
+    tar -jxf samtools-1.4.tar.bz2 && \
+    cd samtools-1.4 && \
+    make && \
+    make install
+RUN cp samtools /usr/bin/
+
 # Install stringtie
 WORKDIR /docker
 RUN wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.3b.Linux_x86_64.tar.gz && \
@@ -58,6 +66,7 @@ RUN wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.3b.Linux_x86_64.
 # Cleanup
 RUN rm -rf /docker/hisat2
 RUN rm -rf /docker/sratoolkit.2.8.2-1-ubuntu64
+RUN rm -rf /docker/samtools-1.4
 RUN rm -rf /docker/stringtie-1.3.3b.Linux_x86_64
 RUN apt-get clean
 RUN apt-get remove --yes --purge build-essential gcc-multilib apt-utils zlib1g-dev vim
