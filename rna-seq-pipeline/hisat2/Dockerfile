@@ -50,12 +50,13 @@ RUN wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.0.5-Linux_
 RUN cp -p hisat2-2.0.5/hisat2 hisat2-2.0.5/hisat2-* /usr/bin
 
 # Install samtools
+WORKDIR /docker
 RUN wget https://github.com/samtools/samtools/releases/download/1.4/samtools-1.4.tar.bz2 && \
     tar -jxf samtools-1.4.tar.bz2 && \
     cd samtools-1.4 && \
     make && \
-    make install
-RUN cp samtools /usr/bin/
+    make install && \
+    cp samtools /usr/bin/
 
 # Install stringtie
 WORKDIR /docker
