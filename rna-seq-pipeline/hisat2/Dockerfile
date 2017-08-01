@@ -45,9 +45,9 @@ RUN cp -r sratoolkit.2.8.2-1-ubuntu64/bin/* /usr/bin
 
 # Install hisat2
 WORKDIR /docker
-RUN wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.0.5-Linux_x86_64.zip && \
-    unzip hisat2-2.0.5-Linux_x86_64.zip
-RUN cp -p hisat2-2.0.5/hisat2 hisat2-2.0.5/hisat2-* /usr/bin
+RUN wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.1.0-Linux_x86_64.zip && \
+    unzip hisat2-2.1.0-Linux_x86_64.zip
+RUN cp -p hisat2-2.1.0/hisat2 hisat2-2.1.0/hisat2-* /usr/bin
 
 # Install samtools
 WORKDIR /docker
@@ -65,7 +65,7 @@ RUN wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.3b.Linux_x86_64.
     cp ./stringtie-1.3.3b.Linux_x86_64/stringtie /usr/bin/
 
 # Cleanup
-RUN rm -rf /docker/hisat2
+RUN rm -rf /docker/hisat2-2.1.0
 RUN rm -rf /docker/sratoolkit.2.8.2-1-ubuntu64
 RUN rm -rf /docker/samtools-1.4
 RUN rm -rf /docker/stringtie-1.3.3b.Linux_x86_64
