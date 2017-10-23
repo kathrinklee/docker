@@ -40,4 +40,3 @@ ENV PATH /usr/local/STAR/source:$PATH
 WORKDIR /usr/local/Drop-seq_tools
 RUN wget "http://mccarrolllab.com/download/922/Drop-seq_tools-1.12.zip" && \
  unzip Drop-seq_tools-1.12.zip
-RUN sed -i -e 's/java /java -Djava.io.tmpdir=\/hosthome\/tmp /g' /usr/local/Drop-seq_tools/Drop-seq_tools-1.12/Drop-seq_alignment.sh
