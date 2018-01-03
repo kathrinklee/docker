@@ -1,8 +1,8 @@
-############################################################
+################################################################
 # Dockerfile to build container images for RNA-seq pipeline
-# including hisat2, sratools, samtools and stringtie
+# including hisat2, sratools, samtools, stringtie and cufflinks
 # Based on Ubuntu
-############################################################
+################################################################
 
 FROM ubuntu:16.04
 
@@ -63,12 +63,19 @@ WORKDIR /docker
 RUN wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.3b.Linux_x86_64.tar.gz && \
     tar zxf stringtie-1.3.3b.Linux_x86_64.tar.gz && \
     cp ./stringtie-1.3.3b.Linux_x86_64/stringtie /usr/bin/
+    
+# Install Cufflinks 
+WORKDIR /docker
+RUN wget http://cole-trapnell-lab.github.io/cufflinks/assets/downloads/cufflinks-2.2.1.Linux_x86_64.tar.gz && \
+    tar zxf cufflinks-2.2.1.Linux_x86_64.tar.gz
+ENV PATH $PATH:/docker/cufflinks-2.2.1.Linux_x86_64
 
 # Cleanup
 RUN rm -rf /docker/hisat2-2.1.0
 RUN rm -rf /docker/sratoolkit.2.8.2-1-ubuntu64
 RUN rm -rf /docker/samtools-1.4
 RUN rm -rf /docker/stringtie-1.3.3b.Linux_x86_64
+RUN rm /docker/cufflinks-2.2.1.Linux_x86_64.tar.gz
 RUN apt-get clean
 RUN apt-get remove --yes --purge build-essential gcc-multilib apt-utils zlib1g-dev vim
 
