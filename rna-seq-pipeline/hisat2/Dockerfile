@@ -64,6 +64,10 @@ RUN wget http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.3b.Linux_x86_64.
     tar zxf stringtie-1.3.3b.Linux_x86_64.tar.gz && \
     cp ./stringtie-1.3.3b.Linux_x86_64/stringtie /usr/bin/
     
+# Download stringtie prepDE
+WORKDIR /docker
+RUN wget http://ccb.jhu.edu/software/stringtie/dl/prepDE.py
+    
 # Install gffcompare 
 WORKDIR /docker
 RUN git clone https://github.com/gpertea/gclib && \
