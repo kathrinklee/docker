@@ -73,8 +73,8 @@ WORKDIR /docker
 RUN git clone https://github.com/gpertea/gclib && \
     git clone https://github.com/gpertea/gffcompare && \
     cd gffcompare && \
-    make release
-ENV PATH "/gffcompare:$PATH"
+    make release && \
+    cp ./gffcompare/gffcompare /usr/bin/
 
 # Cleanup
 RUN rm -rf /docker/hisat2-2.1.0
